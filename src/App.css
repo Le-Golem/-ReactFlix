@@ -44,6 +44,11 @@
     display: flex;
     padding: 2em 0;
 }
+
+.even {
+    justify-content: space-around;
+}
+
 .flex img {
     border-radius: 4px;
     height: 8vw;
@@ -65,4 +70,13 @@
     padding: 0.2em 0.6em;
     text-indent: 0.1vw;
     width: 18em;
+}
+
+.profil {
+    margin-right: 2em;
+}
+
+ul,
+li {
+    list-style-type: none;
 }

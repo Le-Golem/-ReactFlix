@@ -1,16 +1,17 @@
 import profilPic from "../assets/profil-picture.png";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-const ModalProfilForm = () => {
+const ModalProfilForm = ({ handleModal }) => {
+    const dispatch = useDispatch();
     const [user, setUser] = useState("");
-    const [profil, setProfil] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setProfil(user);
+        dispatch({ type: "ADD_USER", user });
+        setUser("");
+        handleModal();
     };
-
-    console.log(user);
 
     return (
         <form onSubmit={handleSubmit}>
@@ -33,7 +34,9 @@ const ModalProfilForm = () => {
             <hr />
             <div>
                 <button type="submit">Continuer</button>
-                <button>Annuler</button>
+                <button type="reset" onClick={handleModal}>
+                    Annuler
+                </button>
             </div>
         </form>
     );
