@@ -7,12 +7,15 @@ const ProfilReducer = (state = initialState, action = {}) => {
         case "ADD_USER":
             return {
                 ...state,
-                users: state.users.concat(action.user),
+                users: state.users.concat(action.payload),
             };
-        case "DELETE_user":
+        case "SELECT_USER":
+            // console.log(action.id);
             return {
                 ...state,
-                users: initialState.users,
+                users: state.users.map((user) =>
+                    user.id === action.id ? { ...user, selected: true } : { ...user, selected: false }
+                ),
             };
 
         default:

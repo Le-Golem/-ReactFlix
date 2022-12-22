@@ -1,6 +1,7 @@
 import profilPic from "../assets/profil-picture.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { addUser } from "../actions/UserActions";
 
 const ModalProfilForm = ({ handleModal }) => {
     const dispatch = useDispatch();
@@ -8,7 +9,7 @@ const ModalProfilForm = ({ handleModal }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch({ type: "ADD_USER", user });
+        dispatch(addUser({ id: new Date().getTime(), userName: user, selected: false }));
         setUser("");
         handleModal();
     };
