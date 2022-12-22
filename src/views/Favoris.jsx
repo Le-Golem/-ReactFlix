@@ -1,9 +1,7 @@
-import React from "react";
-
-const Favoris = () => {
+const Favoris = ({ profil }) => {
     return (
         <>
-            <p>Mes favoris</p>
+            <p>Les favoris de {profil.userName}</p>
         </>
     );
 };
