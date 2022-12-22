@@ -1,18 +1,25 @@
 import { useState } from "react";
-import ModalProfilForm from "./ModalProfilForm";
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../actions/UserActions";
+import { useNavigate } from "react-router-dom";
+
 import profilpicture from "../assets/profil-picture.png";
+
+import ModalProfilForm from "./ModalProfilForm";
 
 const Profil = () => {
     const { users } = useSelector((state) => state.ProfilReducer);
     const [modalProfil, setModalProfil] = useState(false);
     const dispatch = useDispatch();
-
-    console.log(users);
+    const navigate = useNavigate();
 
     const handleModal = () => {
         setModalProfil(!modalProfil);
+    };
+
+    const handleClick = (id) => {
+        dispatch(selectUser(id));
+        navigate("/home");
     };
 
     return (
@@ -25,12 +32,12 @@ const Profil = () => {
                     <ul className="flex even">
                         {users.map((user) => (
                             <li className="profil" key={user.id}>
-                                <img onClick={() => dispatch(selectUser(user.id))} src={profilpicture} alt="" />
+                                <img onClick={() => handleClick(user.id)} src={profilpicture} alt="" />
                                 {user.userName}
                             </li>
                         ))}
                         <li>
-                            <button onClick={handleModal}>+</button>
+                            <button onClick={handleModal}>add</button>
                             <p>Ajouter un profil</p>
                         </li>
                     </ul>

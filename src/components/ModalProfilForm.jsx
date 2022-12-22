@@ -1,7 +1,8 @@
-import profilPic from "../assets/profil-picture.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addUser } from "../actions/UserActions";
+
+import profilPic from "../assets/profil-picture.png";
 
 const ModalProfilForm = ({ handleModal }) => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const ModalProfilForm = ({ handleModal }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <h1>Ajouter un profil</h1>
             <p>Ajoutez un profil pour un nouvel utilisateur Netflix.</p>
             <hr />

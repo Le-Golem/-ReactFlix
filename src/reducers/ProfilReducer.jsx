@@ -10,7 +10,6 @@ const ProfilReducer = (state = initialState, action = {}) => {
                 users: state.users.concat(action.payload),
             };
         case "SELECT_USER":
-            // console.log(action.id);
             return {
                 ...state,
                 users: state.users.map((user) =>
