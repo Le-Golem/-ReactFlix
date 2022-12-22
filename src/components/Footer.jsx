@@ -3,22 +3,22 @@ const Footer = () => {
         <footer>
             <ul>
                 <li>
-                    <a class="None" href="#">
+                    <a className="None" href="#">
                         About
                     </a>
                 </li>
                 <li>
-                    <a class="None" href="#">
+                    <a className="None" href="#">
                         Help Center
                     </a>
                 </li>
                 <li>
-                    <a class="None" href="#">
+                    <a className="None" href="#">
                         Terms of Use
                     </a>
                 </li>
                 <li>
-                    <a class="None" href="#">
+                    <a className="None" href="#">
                         Privacy Statement
                     </a>
                 </li>

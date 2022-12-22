@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import reactFlixLogo from "../assets/react-flix.png";
+import profilPicture from "../assets/profil-picture.png";
 const Header = ({ profil }) => {
     return (
         <header>
@@ -31,7 +32,7 @@ const Header = ({ profil }) => {
                 <button>Search</button>
             </form>
             <Link to={"/"}>
-                <h1>{profil.userName}</h1>
+                <h1>{profil.userName} </h1>
             </Link>
         </header>
     );

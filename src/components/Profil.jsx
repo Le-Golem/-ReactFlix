@@ -33,7 +33,7 @@ const Profil = () => {
                         {users.map((user) => (
                             <li className="profil" key={user.id}>
                                 <img onClick={() => handleClick(user.id)} src={profilpicture} alt="" />
-                                {user.userName}
+                                <h3>{user.userName}</h3>
                             </li>
                         ))}
                         <li>

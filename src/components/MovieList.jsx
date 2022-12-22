@@ -1,13 +1,14 @@
 import Slider from "react-slick";
-import "axios";
-import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import api from "../components/Api";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const MovieList = () => {
+import { addFav } from "../actions/FavoriteActions";
+import { useDispatch } from "react-redux";
+
+const MovieList = ({ profil, movies1, movies2 }) => {
+    const dispatch = useDispatch();
+
     const settings = {
         dots: false,
         infinite: true,
@@ -15,25 +16,40 @@ const MovieList = () => {
         slidesToShow: 3,
         slidesToScroll: 3,
     };
-    const [movies, setMovies] = useState([]);
 
-    useEffect(() => {
-        axios.get(api).then((response) => {
-            setMovies(response.data.results);
-
-            console.log(response.data);
-        });
-    }, []);
     return (
-        <Slider {...settings}>
-            {movies.length > 0 &&
-                movies.map((movie) => (
-                    <li key={movie.id} className="movie-item">
-                        <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-                        <h3>{movie.title}</h3>
-                    </li>
-                ))}
-        </Slider>
+        <>
+            <Slider {...settings}>
+                {movies1.length > 0 &&
+                    movies1.map((movie) => (
+                        <li key={movie.id} className="movie-item">
+                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+                            <h3
+                                onClick={() =>
+                                    dispatch(addFav({ favID: new Date().getTime(), userID: profil.id, movie }))
+                                }
+                            >
+                                {movie.title}
+                            </h3>
+                        </li>
+                    ))}
+            </Slider>
+            <Slider {...settings}>
+                {movies2.length > 0 &&
+                    movies2.map((movie) => (
+                        <li key={movie.id} className="movie-item">
+                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+                            <h3
+                                onClick={() =>
+                                    dispatch(addFav({ favID: new Date().getTime(), userID: profil.id, movie }))
+                                }
+                            >
+                                {movie.title}
+                            </h3>
+                        </li>
+                    ))}
+            </Slider>
+        </>
     );
 };
 
