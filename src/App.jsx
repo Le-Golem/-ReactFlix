@@ -1,10 +1,10 @@
 import "./App.css";
-import Profil from "./components/Profil";
+import ReactFlixRouter from "./router/ReactFlixRouter";
 
 const App = () => {
     return (
         <>
-            <Profil />
+            <ReactFlixRouter />
         </>
     );
 };
