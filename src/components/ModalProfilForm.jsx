@@ -10,7 +10,11 @@ const ModalProfilForm = ({ handleModal }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addUser({ id: new Date().getTime(), userName: user, selected: false }));
+        let myUser = user;
+        if (user.trim() === "") {
+            myUser = "Sans nom";
+        }
+        dispatch(addUser({ userID: new Date().getTime(), userName: myUser, selected: false }));
         setUser("");
         handleModal();
     };
