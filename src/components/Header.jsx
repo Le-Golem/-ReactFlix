@@ -32,7 +32,7 @@ const Header = ({ profil }) => {
                 <button>Search</button>
             </form>
             <Link to={"/"}>
-                <h1>{profil.userName} </h1>
+                <h1 style={{ textDecoration: "none" }}>{profil.userName} </h1>
             </Link>
         </header>
     );

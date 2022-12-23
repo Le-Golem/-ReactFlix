@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectUser } from "../actions/UserActions";
+import { selectUser, deleteUser } from "../actions/UserActions";
 import { useNavigate } from "react-router-dom";
+import { deleteFavUser } from "../actions/FavoriteActions";
 
 import profilpicture from "../assets/profil-picture.png";
 
@@ -17,9 +18,14 @@ const Profil = () => {
         setModalProfil(!modalProfil);
     };
 
-    const handleClick = (id) => {
-        dispatch(selectUser(id));
+    const handleClick = (userID) => {
+        dispatch(selectUser(userID));
         navigate("/home");
+    };
+
+    const deleteFavByUser = (user) => {
+        dispatch(deleteUser({ user }));
+        dispatch(deleteFavUser({ user }));
     };
 
     return (
@@ -31,13 +37,15 @@ const Profil = () => {
                     <h1>Qui est-ce ?</h1>
                     <ul className="flex even">
                         {users.map((user) => (
-                            <li className="profil" key={user.id}>
-                                <img onClick={() => handleClick(user.id)} src={profilpicture} alt="" />
-                                <h3>{user.userName}</h3>
+                            <li className="profil" key={user.userID}>
+                                <img onClick={() => handleClick(user.userID)} src={profilpicture} alt="" />
+                                <h3 style={{ cursor: "pointer" }} onClick={() => deleteFavByUser(user)}>
+                                    {user.userName}
+                                </h3>
                             </li>
                         ))}
                         <li>
-                            <button onClick={handleModal}>add</button>
+                            <button onClick={handleModal}>+</button>
                             <p>Ajouter un profil</p>
                         </li>
                     </ul>

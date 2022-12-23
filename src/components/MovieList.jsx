@@ -3,12 +3,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { addFav } from "../actions/FavoriteActions";
-import { useDispatch } from "react-redux";
+import Movie from "./Movie";
 
-const MovieList = ({ profil, movies1, movies2 }) => {
-    const dispatch = useDispatch();
-
+const MovieList = ({ profil, movies1, movies2, movies3 }) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -19,35 +16,18 @@ const MovieList = ({ profil, movies1, movies2 }) => {
 
     return (
         <>
+            {" "}
+            <h2>Top de la semaine</h2>
             <Slider {...settings}>
-                {movies1.length > 0 &&
-                    movies1.map((movie) => (
-                        <li key={movie.id} className="movie-item">
-                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-                            <h3
-                                onClick={() =>
-                                    dispatch(addFav({ favID: new Date().getTime(), userID: profil.id, movie }))
-                                }
-                            >
-                                {movie.title}
-                            </h3>
-                        </li>
-                    ))}
+                {movies1.length > 0 && movies1.map((movie) => <Movie key={movie.id} profil={profil} movie={movie} />)}
             </Slider>
+            <h2>Films du moment</h2>
             <Slider {...settings}>
-                {movies2.length > 0 &&
-                    movies2.map((movie) => (
-                        <li key={movie.id} className="movie-item">
-                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-                            <h3
-                                onClick={() =>
-                                    dispatch(addFav({ favID: new Date().getTime(), userID: profil.id, movie }))
-                                }
-                            >
-                                {movie.title}
-                            </h3>
-                        </li>
-                    ))}
+                {movies2.length > 0 && movies2.map((movie) => <Movie key={movie.id} profil={profil} movie={movie} />)}
+            </Slider>
+            <h2>Films d'auteurs</h2>
+            <Slider {...settings}>
+                {movies3.length > 0 && movies3.map((movie) => <Movie key={movie.id} profil={profil} movie={movie} />)}
             </Slider>
         </>
     );

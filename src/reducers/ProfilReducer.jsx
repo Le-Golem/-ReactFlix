@@ -13,8 +13,13 @@ const ProfilReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 users: state.users.map((user) =>
-                    user.id === action.id ? { ...user, selected: true } : { ...user, selected: false }
+                    user.userID === action.userID ? { ...user, selected: true } : { ...user, selected: false }
                 ),
+            };
+        case "DELETE_USER":
+            return {
+                ...state,
+                users: state.users.filter((user) => user.userID !== action.payload.user.userID),
             };
 
         default:
